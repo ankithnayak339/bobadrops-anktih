@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side-by-Side Audio Visualizers</title>
+    <style>
+        html {
+    --sz: 14px;
+    --c1: #97c3d7;
+    --c2: #789cad;
+    --c3: #607D8B;
+    --c4: #445a65;
+    --ts: 50% / calc(var(--sz)* 20) calc(var(--sz)* 20);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: 
+        conic-gradient(from -45deg at 8.5% 8.5%, var(--c1) 0 12.5%, #fff0 0 100%) var(--ts),   
+        conic-gradient(from 270deg at 8.25% 50%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),         
+        conic-gradient(from 270deg at 50% 8.35%, var(--c1) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 270deg at 16.5% 33.5%, var(--c3) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 270deg at 33.5% 16.65%, var(--c3) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 270deg at 33.25% 33.25%, var(--c4) 0 12.5%, var(--c1) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 41.85% 8.25%, #fff0 0 225deg, var(--c3) 0 75%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -135deg at 8.45% 91.75%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -180deg at 42.45% 91.75%, var(--c3) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -180deg at 8.45% 83%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -180deg at 33.45% 91.75%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -180deg at 33.45% 83.3%, var(--c1) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -180deg at 8.45% 57.9%, var(--c2) 0 37.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from -180deg at 17.35% 67%, var(--c1) 0 37.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 180deg at 33.25% 67%, var(--c3) 0 12.5%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 42% 91.8%, #fff0 0 75%, var(--c1) 0 87.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 91.75% 91.5%, var(--c1) 0 12.5%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 57.5% 91.8%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 45deg at 92.25% 57.5%, var(--c1) 0 37.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 57.5% 91.8%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 83.35% 66.8%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 66.5% 92%, var(--c3) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 66.75% 83.25%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 67% 67%, var(--c1) 0 12.5%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 45deg at 58% 92%, var(--c2) 0 12.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 92.25% 8.25%, var(--c2) 0 12.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 92.5% 42.75%, var(--c3) 0 37.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 57.5% 8.25%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 83.5% 33.5%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 66.75% 17%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 0deg at 67% 33%, var(--c2) 0 12.5%, var(--c3) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 58% 8%, var(--c4) 0 12.5%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 270deg at 42% 42%, var(--c2) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 180deg at 42% 58%, var(--c4) 0 25%, #fff0 0 100%) var(--ts),
+        conic-gradient(from 90deg at 58% 58%, var(--c3) 0 25%, #fff0 0 100%) var(--ts), 
+        conic-gradient(from 0deg at 58% 42%, var(--c1) 0 25%, #fff0 0 100%) var(--ts), 
+        conic-gradient(from 0deg at 50% 50%, var(--c2) 0 45deg, var(--c3) 0 90deg, var(--c1) 0 135deg, var(--c4) 0 180deg, var(--c3) 0 225deg, var(--c2) 0 270deg, var(--c4) 0 315deg, var(--c1) 0 360deg) var(--ts);
+}
+    #dino{
+        border-color: red; 
+        size: 50%;
+    }
+    </style>
+</head>
+<body style="color: red;">
+    <h1>hello - ira is the best organizer</h1>
+    <img id="dino" src="image.png">
+    <h1>ira is the best organizer and judge in your scrapyard chicago hackathon because she brings an unmatched level of energy, organization, and enthusiasm to the event. she ensures everything runs smoothly, from setup to final judging, keeping participants engaged and motivated throughout the hackathon. her ability to balance fairness with an appreciation for creativity makes her the ideal judge, recognizing not just technical skill but also innovation and out-of-the-box thinking. plus, her keen eye for the most ambitious and unconventional hacks helps foster an environment where participants feel encouraged to push boundaries and experiment fearlessly.</h1>
+    <img src="download (1).jpeg">
+</body>
+</html>
